@@ -2,7 +2,7 @@ import React from 'react'
 
 const Secret = () => {
   return (
-    <h1 />
+    <h1>Secret</h1>
   )
 }
 
