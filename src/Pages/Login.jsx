@@ -1,10 +1,34 @@
+import { useForm } from 'react-hook-form'
+import { loginUserService } from '@/services/userServices'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { useNavigate } from 'react-router-dom'
 import '@/styles/form.css'
 import logo from '@/assets/react.svg'
 
 const Login = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const navigate = useNavigate()
+
+  const { login } = useAuthContext()
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await loginUserService(data)
+      if (response.status === 200) {
+        navigate('/')
+        console.log('Usuario autenticado exitosamente')
+        login(response.data.token)
+        // console.log(response.data.token)
+      }
+    } catch (error) {
+      console.log('Ocurrio un error en Login', error)
+    }
+  }
+
   return (
     <main className='form-signin w-100 m-auto'>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <img
           className='mb-4'
           src={logo}
@@ -19,6 +43,7 @@ const Login = () => {
             className='form-control'
             id='floatingInput'
             placeholder='name@example.com'
+            {...register('email')}
           />
           <label htmlFor='floatingInput'>Email address</label>
         </div>
@@ -28,6 +53,7 @@ const Login = () => {
             className='form-control'
             id='floatingPassword'
             placeholder='Password'
+            {...register('password')}
           />
           <label htmlFor='floatingPassword'>Password</label>
         </div>
