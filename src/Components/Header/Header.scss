@@ -14,11 +14,12 @@ $menu-color: #3d3d3d;
 
 
 .header {
-    background-color: aliceblue;
+    background-color: rgb(77, 141, 197);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px, 30px;
+    height: 80px;
 
     &__logo {
         @include header-link()
@@ -43,3 +44,28 @@ $menu-color: #3d3d3d;
        }
     }
 }
+
+/* ... Otros estilos */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Para alinear a la derecha */
+  }
+  
+  .search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .search-bar button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
